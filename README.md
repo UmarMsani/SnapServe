@@ -56,11 +56,11 @@ Open your web browser and go to http://localhost:5000/
 
 # Project Structure
 
-app.py: Main application file.
-templates/: HTML templates for rendering pages.
-static/: Static files such as images and stylesheets.
-models.py: Database models and schema definitions.
-migrations/: Database migration files.
+* app.py: Main application file.
+* templates/: HTML templates for rendering pages.
+* static/: Static files such as images and stylesheets.
+* models.py: Database models and schema definitions.
+* migrations/: Database migration files.
 
 # Contributing
 
