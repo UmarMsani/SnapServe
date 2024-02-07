@@ -29,29 +29,21 @@ SnapServe is a food delivery and recipe app designed to provide users with a sea
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/snapserve.git
-Navigate to the project directory:
-
-bash
-Copy code
+   git clone https://github.com/UmarMsani/snapserve.git
+   
+# Navigate to the project directory:
 cd snapserve
-Install dependencies:
 
-bash
-Copy code
+# Install dependencies:
 pip install -r requirements.txt
-Set up the database:
 
-bash
-Copy code
+# Set up the database:
 flask db init
-flask db migrate
+flask db migrate -m "Initial migration"
 flask db upgrade
 
 # Usage
 Run the application:
-bash
-Copy code
 flask run
 Open your web browser and go to http://localhost:5000/
 
