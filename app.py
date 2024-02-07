@@ -6,7 +6,7 @@ from flask_login import LoginManager, UserMixin, login_required
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://your_username:your_password@localhost/your_database_name'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -201,7 +201,11 @@ def logout():
 
 @app.route('/home')
 def home():
-    return render_template('index.html')
+    if 'user_id' in session:
+        return render_template('index.html')
+    else:
+        flash('You need to log in first.')
+        return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
