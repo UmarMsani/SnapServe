@@ -49,8 +49,18 @@
         {% endwith %}
 
         <form method="POST" action="{{ url_for('cart') }}">
-            <label for="item_name">Add Item to Cart:</label>
-            <input type="text" name="item_name" required>
+            <label for="name">Item Name:</label>
+            <input type="text" name="name" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" step="0.01" required>
+
+            <label for="picture_url">Picture URL:</label>
+            <input type="text" name="picture_url" required>
+
+            <label for="description">Description:</label>
+            <textarea name="description" rows="4"></textarea>
+
             <input type="submit" value="Add to Cart">
         </form>
 
@@ -58,8 +68,11 @@
             {% if cart_items %}
                 {% for item in cart_items %}
                     <div class="cart-item">
-                        <span>{{ item }}</span>
-                        <span class="remove-btn" onclick="removeFromCart('{{ item }}')">Remove</span>
+                        <span>Name: {{ item.name }}</span>
+                        <span>Amount: ${{ item.amount }}</span>
+                        <span>Picture: <img src="{{ item.picture_url }}" alt="Item Image"></span>
+                        <span>Description: {{ item.description }}</span>
+                        <span class="remove-btn" onclick="removeFromCart('{{ item.id }}')">Remove</span>
                     </div>
                 {% endfor %}
             {% else %}

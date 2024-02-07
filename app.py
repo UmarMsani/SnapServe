@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session, send_from_directory
+from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask_login import LoginManager, UserMixin, login_required
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -147,17 +147,22 @@ def cart():
 
     if request.method == 'POST':
         # Add item to the cart
-        item_name = request.form['item_name']
-        new_cart_item = CartItem(user_id=user.id, item_name=item_name)
+        name = request.form['name']
+        amount = float(request.form['amount'])
+        picture_url = request.form['picture_url']
+        description = request.form['description']
+
+        new_cart_item = CartItem(user_id=user.id, name=name, amount=amount, picture_url=picture_url, description=description)
 
         try:
             db.session.add(new_cart_item)
             db.session.commit()
-            flash(f'{item_name} added to your cart.')
+            flash(f'{name} added to your cart.')
         except Exception as e:
             db.session.rollback()
             flash('Error adding item to the cart. Please try again.')
 
+    # Fetch items from the database based on the user's ID
     cart_items = CartItem.query.filter_by(user_id=user.id).all()
 
     return render_template('cart.html', user=user, cart_items=cart_items)
