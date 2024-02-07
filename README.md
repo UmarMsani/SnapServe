@@ -38,9 +38,9 @@ cd snapserve
 pip install -r requirements.txt
 
 # Set up the database:
-flask db init
-flask db migrate -m "Initial migration"
-flask db upgrade
+* flask db init
+* flask db migrate -m "Initial migration"
+* flask db upgrade
 
 # Usage
 Run the application:
@@ -49,10 +49,10 @@ Open your web browser and go to http://localhost:5000/
 
 # Technologies
 
-Flask (Python web framework)
-SQLAlchemy (Database ORM)
-HTML, CSS, JavaScript (Frontend)
-SQLite (Database)
+* Flask (Python web framework)
+* SQLAlchemy (Database ORM)
+* HTML, CSS, JavaScript (Frontend)
+* SQLite (Database)
 
 # Project Structure
 
